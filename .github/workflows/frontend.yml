@@ -1,0 +1,29 @@
+name: Build Order Frontend
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-order:
+    name: Build Order Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Docker image
+        working-directory: frontend/
+        run: docker build -t ghcr.io/svsticky/crazy-88-web/frontend:latest .
+      - name: Push Docker image
+        working-directory: frontend/
+        run: docker push ghcr.io/svsticky/crazy-88-web/frontend
