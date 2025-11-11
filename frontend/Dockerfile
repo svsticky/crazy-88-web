@@ -1,12 +1,12 @@
 FROM node:20-alpine AS development-dependencies-env
 COPY . /app
 WORKDIR /app
-RUN npm ci
+RUN npm i -g pnpm && pnpm install
 
 FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
+COPY ./package.json pnpm-lock.yaml /app/
 WORKDIR /app
-RUN npm ci --omit=dev
+RUN npm i -g pnpm && pnpm install --prod
 
 FROM node:20-alpine AS build-env
 COPY . /app/

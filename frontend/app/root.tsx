@@ -1,4 +1,4 @@
-import {Links, Meta, Outlet, Scripts, ScrollRestoration,} from 'react-router';
+import {Links, Meta, Outlet, Scripts, ScrollRestoration} from 'react-router';
 
 import './app.css';
 import React from 'react';
