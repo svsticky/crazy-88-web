@@ -1,4 +1,4 @@
-name: Build Frontend
+name: Build Backend
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-order:
-    name: Build Frontend
+    name: Build Backend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,8 +22,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Docker image
-        working-directory: frontend/
-        run: docker build -t ghcr.io/svsticky/crazy-88-web/frontend:latest .
+        working-directory: backend/
+        run: docker build -t ghcr.io/svsticky/crazy-88-web/backend:latest .
       - name: Push Docker image
-        working-directory: frontend/
-        run: docker push ghcr.io/svsticky/crazy-88-web/frontend
+        working-directory: backend/
+        run: docker push ghcr.io/svsticky/crazy-88-web/backend
