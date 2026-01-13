@@ -18,6 +18,8 @@ public class User {
     private Integer koalaUserId;
     @NotNull
     private UserRole role;
+    @NotNull
+    private String name;
 
     @NotNull
     public Long getId() {
@@ -44,6 +46,15 @@ public class User {
 
     public void setRole(@NotNull UserRole role) {
         this.role = role;
+    }
+
+    @NotNull
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(@NotNull String name) {
+        this.name = name;
     }
 
 }
